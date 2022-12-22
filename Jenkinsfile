@@ -31,7 +31,9 @@ pipeline {
             steps {
                 echo 'Deploy app'
                 unstash name: 'GOAPP_ARTIFACT'
+                sh 'ssh -o StrictHostKeyChecking=no -i "$GCP_SSH_KEY" trainer@34.123.135.41 "sudo systemctl stop goapp"'
                 sh 'scp -o StrictHostKeyChecking=no -i "$GCP_SSH_KEY" goapp trainer@34.123.135.41:~/goapp'
+                sh 'ssh -o StrictHostKeyChecking=no -i "$GCP_SSH_KEY" trainer@34.123.135.41 "sudo systemctl start goapp"'
             }
         }
     }
