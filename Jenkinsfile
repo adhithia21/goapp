@@ -2,9 +2,16 @@ pipeline {
     agent any 
     stages {
         stage('Build') {
+            agent {
+                docker {
+                    image 'golang:alpine3.16'
+                }
+            }
             steps {
                 echo 'Build app'
-                sleep(5)
+                sh '''#/bin/sh
+                    go version
+                '''
             }
         }
         stage('Test') {
