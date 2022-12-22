@@ -14,6 +14,7 @@ pipeline {
                     go version
                     GOCACHE=/tmp/ GOOS=linux GOARCH=386 go build -o goapp main.go
                 '''
+                stash includes: 'goapp', name: 'GOAPP_ARTIFACT'
             }
         }
         stage('Test') {
@@ -29,6 +30,7 @@ pipeline {
             }
             steps {
                 echo 'Deploy app'
+                unstash name: 'GOAPP_ARTIFACT'
                 sh 'scp -o StrictHostKeyChecking=no -i "$GCP_SSH_KEY" goapp trainer@34.123.135.41:~/goapp'
             }
         }
