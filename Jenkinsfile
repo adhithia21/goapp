@@ -12,6 +12,7 @@ pipeline {
                 echo 'Build app'
                 sh '''#/bin/sh
                     go version
+                    GOOS=linux GOARCH=386 go build -o golang-sample-linux386 main.go
                 '''
             }
         }
