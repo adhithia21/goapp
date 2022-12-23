@@ -34,7 +34,7 @@ pipeline {
                 sh 'helm repo add adhithia-charts https://adhithia21.github.io/helm-charts/charts'
                 sh 'helm repo update adhithia-charts'
                 sh 'helm search repo adhithia-charts/'
-                sh 'helm upgrade --kubeconfig "$KUBE_CONFIG" --install goapp adhithia-charts/application --set replicas=1 --image=asia.gcr.io/studidevops-369306/goapp:${BUILD_NUMBER}'
+                sh 'helm upgrade --kubeconfig "$KUBE_CONFIG" --install goapp adhithia-charts/application --set replicas=1 --set image=asia.gcr.io/studidevops-369306/goapp:${BUILD_NUMBER}'
             }
         }
     }
