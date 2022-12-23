@@ -33,7 +33,7 @@ pipeline {
                 echo 'Deploy'
                 sh 'helm repo add adhithia-charts https://adhithia21.github.io/helm-charts/charts'
                 sh 'helm repo update adhithia-charts'
-                sh 'helam search adhithia-charts/'
+                sh 'helm search adhithia-charts/'
                 sh 'helm upgrade --kubeconfig "$KUBE_CONFIG" --install goapp adhithia-charts/application'
             }
         }
