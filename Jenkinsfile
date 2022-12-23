@@ -1,6 +1,6 @@
 pipeline {
     agent {
-     label 'docker && helm'   
+     labels 'docker && helm'   
     }
     stages {
         stage('Build') {
