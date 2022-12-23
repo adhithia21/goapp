@@ -6,7 +6,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Build app'
-                sh 'docker build -t asia.gcr.io/studidevops-369306/goapp:${BUILD_NUMBER}'
+                sh 'docker build -t asia.gcr.io/studidevops-369306/goapp:${BUILD_NUMBER}' .
             }
         }
         stage('Test') {
