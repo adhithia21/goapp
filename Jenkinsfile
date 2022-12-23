@@ -12,7 +12,6 @@ pipeline {
         stage('Push') {
             environment {
                 GCP_SERVICE_ACCOUNT = credentials('gcp_service_account')
-                KUBE_CONFIG = credentials('kubernetes-config')
             }
             steps {
                 echo 'Build app'
@@ -27,6 +26,9 @@ pipeline {
             }
         }
         stage('Deploy') {
+            environment {
+                KUBE_CONFIG = credentials('kubernetes-config')
+            }
             steps {
                 echo 'Deploy'
                 sh 'helm repo add adhithia-charts https://adhithia21.github.io/helm-charts/charts'
