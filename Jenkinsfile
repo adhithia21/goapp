@@ -9,6 +9,12 @@ pipeline {
                 sh 'docker build -t asia.gcr.io/studidevops-369306/goapp:${BUILD_NUMBER} .'
             }
         }
+        stage('Push') {
+            steps {
+                echo 'Build app'
+                sh 'docker push asia.gcr.io/studidevops-369306/goapp:${BUILD_NUMBER}'
+            }
+        }
         stage('Test') {
             steps {
                 echo 'Test app' 
