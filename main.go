@@ -8,7 +8,7 @@ import (
 )
 
 func homePage(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Golang Sample, Selamat Datang!\nApp Version: 8\nBelajar Jenkins Pipeline Automation\nProject GOAPP\n\n<h1>MANTAPPPPP</h1>")
+	fmt.Fprintf(w, "Golang Sample, Selamat Datang!\nApp Version: 9\nBelajar Jenkins Pipeline Automation\nProject GOAPP\n\n<h1>MANTAPPPPP</h1>")
 }
 
 func envPage(w http.ResponseWriter, r *http.Request) {
