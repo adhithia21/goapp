@@ -10,8 +10,12 @@ pipeline {
             }
         }
         stage('Push') {
+            environment {
+                GCP_SERVICE_ACCOUNT = credentials('gcp_service_account')
+            }
             steps {
                 echo 'Build app'
+                sh 'cat $GCP_SERVICE_ACCOUNT | docker login -u _json_key --password-stdin https://asia.gcr.io'
                 sh 'docker push asia.gcr.io/studidevops-369306/goapp:${BUILD_NUMBER}'
             }
         }
