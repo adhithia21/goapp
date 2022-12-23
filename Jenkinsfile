@@ -27,8 +27,9 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                echo 'Deploy' 
-                sleep(5)
+                echo 'Deploy'
+                sh 'helm repo add adhithia-charts https://adhithia21.github.io/helm-charts/charts'
+                sh 'helm upgrade --install goapp adhithia-charts/application'
             }
         }
     }
