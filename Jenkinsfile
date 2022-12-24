@@ -4,6 +4,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Build app'
+                echo 'test trigger'
             }
         }
         stage('Test') {
