@@ -3,10 +3,7 @@ pipeline {
     stages {
         stage('Build') {
             agent {
-                docker {
-                    image 'golang:alpine3.16'
-                    label 'docker'
-                }
+                label 'docker'
             }
             steps {
                 echo 'Build app'
