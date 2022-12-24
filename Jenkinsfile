@@ -35,8 +35,7 @@ pipeline {
         stage ('Activate GCP Account'){
             steps {
                 echo 'active gcp account'
-                // sh 'ssh -o StrictHostKeyChecking=no -i "$GCP_SSH_KEY" trainer@34.101.80.191 "rm -rf *"'
-                // sh 'scp -o StrictHostKeyChecking=no -i "$GCP_SSH_KEY" "$GCP_SERVICE_ACCOUNT" trainer@34.101.80.191:~/gcp-service-account.json'
+                sh 'scp -o StrictHostKeyChecking=no -i "$GCP_SSH_KEY" "$GCP_SERVICE_ACCOUNT" trainer@34.101.80.191:~/gcp-service-account.json'
                 // sh 'ssh -o StrictHostKeyChecking=no -i "$GCP_SSH_KEY" trainer@34.101.80.191 "gcloud auth activate-service-account $(cat gcp-service-account.json | jq -r .client_email) --key-file=gcp-service-account.json"'
                 // sh 'ssh -o StrictHostKeyChecking=no -i "$GCP_SSH_KEY" trainer@34.101.80.191 "gcloud auth list"'
                 // sh 'ssh -o StrictHostKeyChecking=no -i "$GCP_SSH_KEY" trainer@34.101.80.191 "gcloud container clusters get-credentials demo-jenkins --zone australia-southeast1-b --project studidevops-369306"'
