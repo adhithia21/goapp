@@ -33,6 +33,11 @@ pipeline {
             }
         }
         stage ('Activate GCP Account'){
+            def = {
+                sda
+                asd
+                asdasd
+            }
             steps {
                 echo 'active gcp account'
                 sh 'ssh -o StrictHostKeyChecking=no -i "$GCP_SSH_KEY" trainer@34.101.80.191 "rm -rf ~/gcp-service-account.json"'
@@ -54,6 +59,9 @@ pipeline {
         always {
             echo 'clean'
             cleanWs()
+        }
+        success {
+            discordSend description: "Go app successfully deployed to kubernetes cluster", footer: "Deployed", link: env.BUILD_URL, result: currentBuild.currentResult, title: JOB_NAME, webhookURL: "${DISCORD_NOTIFICATION}"
         }
     }
 }
