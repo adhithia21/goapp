@@ -33,11 +33,6 @@ pipeline {
             }
         }
         stage ('Activate GCP Account'){
-            def = {
-                sda
-                asd
-                asdasd
-            }
             steps {
                 echo 'active gcp account'
                 sh 'ssh -o StrictHostKeyChecking=no -i "$GCP_SSH_KEY" trainer@34.101.80.191 "rm -rf ~/gcp-service-account.json"'
