@@ -3,6 +3,7 @@ pipeline {
         label 'docker'
     }
     environment {
+        GCP_SSH_KEY = credentials('gcp-ssh-private-key')
         DISCORD_NOTIFICATION = credentials('discord-alert-development')
         GCP_SERVICE_ACCOUNT = credentials('gcp_service_account')
     }
