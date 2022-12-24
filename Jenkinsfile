@@ -38,7 +38,7 @@ pipeline {
                 KUBE_CONFIG = credentials('kubernetes-demo-jenkins')
             }
             steps {
-                echo 'deploy with helm'
+                echo 'deploy with helm test'
                 sh 'helm repo add adhithia-charts https://adhithia21.github.io/helm-charts/charts'
                 sh 'helm upgrade --kubeconfig "$KUBE_CONFIG" --install goapp adhithia-charts/application'
             }
