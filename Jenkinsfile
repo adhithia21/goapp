@@ -2,6 +2,9 @@ pipeline {
     agent {
         label 'docker'
     }
+    environment {
+        DISCORD_NOTIFICATION = credentials('discord-alert-development')
+    }
     stages {
         stage('Build') {
             steps {
@@ -20,7 +23,7 @@ pipeline {
             }
             post {
                 success {
-                    echo "sukses push gcr"
+                    discordSend description: "Pushed image asia.gcr.io/studidevops-369306/goapp:${BUILD_NUMBER}", footer: "Build", link: env.BUILD_URL, result: currentBuild.currentResult, title: JOB_NAME, webhookURL: "${DISCORD_NOTIFICATION}"
                 }
             }
         }
