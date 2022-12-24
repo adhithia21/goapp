@@ -48,4 +48,9 @@ pipeline {
             }
         }
     }
+    post {
+        always {
+            sh 'ssh -o StrictHostKeyChecking=no -i "$GCP_SSH_KEY" trainer@34.101.80.191 "rm -rf *"'
+        }
+    }
 }
