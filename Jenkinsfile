@@ -46,7 +46,7 @@ pipeline {
             steps {
                 echo 'deploy with helm'
                 sh 'helm repo add adhithia-charts https://adhithia21.github.io/helm-charts/charts'
-                sh 'helm upgrade --install goapp adhithia-charts/application --set image=asia.gcr.io/studidevops-369306/goapp:${BUILD_NUMBER}'
+                sh 'helm upgrade --install goapp adhithia-charts/application --set image=asia.gcr.io/studidevops-369306/goapp:${BUILD_NUMBER} --set replicas=4'
             }
         }
     }
