@@ -61,6 +61,7 @@ pipeline {
             cleanWs()
         }
         success {
+            echo 'send notification'
             discordSend description: "Go app successfully deployed to kubernetes cluster", footer: "Deployed", link: env.BUILD_URL, result: currentBuild.currentResult, title: JOB_NAME, webhookURL: "${DISCORD_NOTIFICATION}"
         }
     }
