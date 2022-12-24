@@ -3,10 +3,10 @@ WORKDIR /app
 COPY go.mod ./
 RUN go mod download
 COPY *.go ./
-RUN go build -o /app
+RUN go build -o /studidevops
 
 FROM golang:alpine3.16
 WORKDIR /
-COPY --from=build /app /app
+COPY --from=build /studidevops /studidevops
 EXPOSE 80
-ENTRYPOINT ["/app"]
+ENTRYPOINT ["/studidevops"]
