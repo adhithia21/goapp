@@ -37,13 +37,14 @@ pipeline {
                 sh 'scp -o StrictHostKeyChecking=no -i "$GCP_SSH_KEY" "$GCP_SERVICE_ACCOUNT" trainer@34.101.80.191:~/gcp-service-account.json'
                 sh 'ssh -o StrictHostKeyChecking=no -i "$GCP_SSH_KEY" trainer@34.101.80.191 "gcloud auth activate-service-account $(cat gcp-service-account.json | jq -r .client_email) --key-file=gcp-service-account.json"'
                 sh 'ssh -o StrictHostKeyChecking=no -i "$GCP_SSH_KEY" trainer@34.101.80.191 "gcloud auth list"'
+                sh 'ssh -o StrictHostKeyChecking=no -i "$GCP_SSH_KEY" trainer@34.101.80.191 "gcloud container clusters get-credentials demo-jenkins --zone australia-southeast1-b --project studidevops-369306"'
             }
         }
         stage('Deploy') {
             steps {
                 echo 'deploy with helm'
                 sh 'helm repo add adhithia-charts https://adhithia21.github.io/helm-charts/charts'
-                sh 'helm upgrade --kubeconfig "$KUBE_CONFIG" --install goapp adhithia-charts/application'
+                sh 'helm upgrade --install goapp adhithia-charts/application'
             }
         }
     }
